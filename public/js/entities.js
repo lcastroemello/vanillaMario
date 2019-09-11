@@ -4,16 +4,14 @@ import { loadMarioSprite } from "./sprites.js";
 export function createMario() {
     return loadMarioSprite().then(sprite => {
         const mario = new Entity();
-        mario.pos.set(64, 189);
-        mario.vel.set(2, -10);
 
         mario.draw = function drawMario(context) {
             sprite.draw("idle", context, this.pos.x, this.pos.y);
         };
 
-        mario.update = function updateMario() {
-            this.pos.x += mario.vel.x;
-            this.pos.y += mario.vel.y;
+        mario.update = function updateMario(deltaTime) {
+            this.pos.x += mario.vel.x * deltaTime;
+            this.pos.y += mario.vel.y * deltaTime;
         };
 
         return mario;
