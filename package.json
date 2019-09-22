@@ -18,6 +18,7 @@
     },
     "homepage": "https://github.com/lcastroemello/vanillaMario#readme",
     "dependencies": {
+        "logit": "^0.1.3",
         "serve": "^11.1.0"
     }
 }

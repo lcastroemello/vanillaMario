@@ -1,12 +1,9 @@
-import Compositor from "./Compositor.js";
-import Entity from "./Entity.js";
 import Timer from "./Timer.js";
+import Keyboard from "./KeyboardState.js";
+
 import { loadLevel } from "./loaders.js";
 import { createMario } from "./entities.js";
-import { loadBackgroundSprites } from "./sprites.js";
-import { createBackgroundLayer, createSpriteLayer } from "./layers.js";
-
-import Keyboard from "./KeyboardState.js";
+import { createCollisionLayer } from "./layers.js";
 
 const canvas = document.getElementById("screen");
 const context = canvas.getContext("2d");
@@ -16,6 +13,9 @@ Promise.all([createMario(), loadLevel("1-1")]).then(([mario, level]) => {
 
     const gravity = 2000;
     mario.pos.set(64, 64);
+
+    let drawCollision = createCollisionLayer(level);
+    drawCollision(context);
 
     level.entities.add(mario);
 
